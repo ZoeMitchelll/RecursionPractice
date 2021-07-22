@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static final Random random = new Random();
@@ -11,12 +8,26 @@ public class Main {
 
 
     public static void main(String[] args) {
+        if (args.length > 0)
+        {
+            System.out.println("The command line arguments are:");
+            for (String val:args) {
+                System.out.println(val);
+            }
+        }
+        else {
+            System.out.println("No command line arguments found.");
+        }
+
 
         //number of amplicons (intervals)
         DM minute = new DM();
 
         System.out.printf("How many amplicons?  ");
         int amplicon = scan.nextInt();
+        if (amplicon == 0) {
+            alterMinute(minute, 4);
+        }
         for (int i = 0; i < amplicon; i++) {
             //chromosome of interval
             System.out.printf("Chromosome of interval: ");
@@ -156,8 +167,8 @@ public class Main {
         }
         //  alterMinute(doubleMinute, randomGenerations - 1);
         //   System.out.println(doubleMinute + "/t" + coord.getStart() + "/t" + coord.getEnd());
-    }
 
+    }
 }
 
 //research Newick format, get removeAmplicon working. (revisit that)
