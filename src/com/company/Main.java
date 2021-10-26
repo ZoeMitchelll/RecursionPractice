@@ -168,6 +168,13 @@ public class Main {
         //  alterMinute(doubleMinute, randomGenerations - 1);
         //   System.out.println(doubleMinute + "/t" + coord.getStart() + "/t" + coord.getEnd());
 
+        Node<String> parentNode = new Node<String>(coord.toString());
+        Node<String> childNode1 = new Node<String>(coord.toString(), parentNode);
+        parentNode.addChild(childNode1);
+        parentNode.inOrderNewick(parentNode);
+        System.out.println(parentNode + " " + childNode1);
+
+
     }
 }
 

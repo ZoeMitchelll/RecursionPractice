@@ -1,6 +1,6 @@
 package com.company;
 
-public class Coordinate {
+public class Coordinate implements Comparable<Object> {
 
     private int chromosome;
     private int start;

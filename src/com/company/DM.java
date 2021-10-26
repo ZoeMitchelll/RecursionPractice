@@ -50,6 +50,14 @@ public class DM {
         return "DM{" + "startCoord=" + startCoord +
                 '}';
     }
+    public Node<Coordinate> outputBED(DM dm, Node<Coordinate> tree) {
+        Node<Coordinate> treeBED = new Node<Coordinate>(new Coordinate());
+        return treeBED;
+    }
+//    public DM randDMTree() {
+//
+//    }
+//
 }
 
 //driver code, create an object of type DM.
