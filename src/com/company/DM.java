@@ -1,63 +1,95 @@
 package com.company;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
 
 public class DM {
-    private ArrayList<Coordinate> startCoord;
+    private HashSet<DM> children;
+    private HashSet<Amplicon> amplicons;
+    static final Random random = new Random();
+    static int maxChildren = 3;
+    static int maxCoordinates = 4;
+    final String prefix;
+    static int letter = 0;
+    static StringBuilder buffer = new StringBuilder(500);
 
 
     public DM() {
-        startCoord = new ArrayList<>();
+        amplicons = new HashSet<>();
+        children = new HashSet<>();
+        prefix = generatePrefix();
+        letter++;
     }
 
-    public void setStartCoord(ArrayList<Coordinate> startCoord) {
-        this.startCoord = startCoord;
+    public DM(int coordinates) {
+        amplicons = new HashSet<>();
+        while(amplicons.size()!=coordinates){
+            amplicons.add(new Amplicon());
+        }
+        children = new HashSet<>();
+        prefix = generatePrefix();
+        letter++;
     }
 
-    public ArrayList<Coordinate> addAmplicon(Coordinate coordinate) {
-        startCoord.add(coordinate);
-        return startCoord;
+    //returns 26^2 unique representations for DM
+    String generatePrefix(){
+        int iteration = letter/26;
+        char c = (char) ((letter%26) + 97);
+        return String.valueOf((char) (97+iteration)) + String.valueOf(c);
+    }
+    public String getPrefix(){
+        return prefix;
     }
 
-    public ArrayList<Coordinate> removeAmplicon(Coordinate coordinate) {
-        startCoord.remove(coordinate);
-        return startCoord;
-    }
-
-    public Coordinate changeOrientation(Coordinate coordinate) {
-        coordinate.setOrientation(!coordinate.getOrientation());
-        return coordinate;
-    }
-
-    public Coordinate modifyCoordinate(Coordinate coordinate) {
-        coordinate.setChromosome(coordinate.getChromosome());
-        coordinate.setOrientation(coordinate.getOrientation());
-        coordinate.setStart(coordinate.getStart());
-        coordinate.setEnd(coordinate.getStart() + coordinate.getEnd());
-        return coordinate;
-    }
-
-    public int size() {
-        return startCoord.size();
-    }
-
-    public void changeRandAmplicon(int ampliconIndex) {
-        startCoord.set(ampliconIndex, changeOrientation(startCoord.get(ampliconIndex)));
-    }
-
-    @Override
     public String toString() {
-        return "DM{" + "startCoord=" + startCoord +
-                '}';
+        print( "", "");
+        return buffer.toString();
     }
-    public Node<Coordinate> outputBED(DM dm, Node<Coordinate> tree) {
-        Node<Coordinate> treeBED = new Node<Coordinate>(new Coordinate());
-        return treeBED;
+
+    // prints tree to the screen
+    private void print(String prefix, String childrenPrefix) {
+        buffer.append(prefix);
+        buffer.append(getPrefix());
+        buffer.append('\n');
+        for (Iterator<DM> it = children.iterator(); it.hasNext(); ) {
+            DM next = it.next();
+            if (it.hasNext()) {
+                next.print(childrenPrefix + "├── ", childrenPrefix + "│   ");
+            } else {
+                next.print(childrenPrefix + "└── ", childrenPrefix + "    ");
+            }
+        }
     }
-//    public DM randDMTree() {
-//
-//    }
-//
+
+    //adds double minutes to tree
+    HashSet<DM> populateChildren(int childrenNum){
+        HashSet<DM> treeLevel = new HashSet<>();
+        while(treeLevel.size()!=childrenNum){
+            int coordinates = random.nextInt(maxCoordinates)+1;
+            treeLevel.add(new DM(coordinates));
+        }
+        return treeLevel;
+    }
+
+    //alters each double minute through generations
+    public void alterMinute(int randomGenerations){
+        if(0 == randomGenerations){
+            return;
+        }
+        if(children.size()==0){
+            setChildren(populateChildren(random.nextInt(maxChildren)+1));
+        }
+        Iterator<DM> it = children.iterator();
+        while(it.hasNext()){
+            DM thisChild = it.next();
+            thisChild.alterMinute(randomGenerations-1);
+        }
+    }
+
+    public void setChildren(HashSet<DM> newChildren) {
+        children = newChildren;
+    }
 }
 
 //driver code, create an object of type DM.

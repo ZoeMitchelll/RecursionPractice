@@ -1,28 +1,26 @@
 package com.company;
 
-import com.company.Coordinate;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class TreePrinter {
-    public static Node<Coordinate> test1() {
-        Node<Coordinate> root = new Node<Coordinate>(2, 3345, 33344, true);
-        Node<Coordinate> n11 = new Node<Coordinate>(7, 332, 4554, false);
-        Node<Coordinate> n12 = new Node<Coordinate>(5, 2202, 35566, true);
-        Node<Coordinate> n21 = new Node<Coordinate>(1, 566676, 1000044, true);
-        Node<Coordinate> n22 = new Node<Coordinate>(6, 444504, 3443234, false);
-        Node<Coordinate> n23 = new Node<Coordinate>(3, 11234, 55643, true);
-        Node<Coordinate> n24 = new Node<Coordinate>(11, 13203, 3003495, false);
-        Node<Coordinate> n31 = new Node<Coordinate>(21, 3324, 9985, true);
-        Node<Coordinate> n32 = new Node<Coordinate>(8, 10349, 23343, false);
-        Node<Coordinate> n33 = new Node<Coordinate>(4, 22345, 66554, false);
-        Node<Coordinate> n34 = new Node<Coordinate>(5, 6964, 9884, true);
-        Node<Coordinate> n35 = new Node<Coordinate>(22, 99865, 100354, false);
-        Node<Coordinate> n36 = new Node<Coordinate>(15, 54989, 70452, false);
-        Node<Coordinate> n37 = new Node<Coordinate>(17, 44342, 56000, true);
-        Node<Coordinate> n38 = new Node<Coordinate>(20, 56697, 100024, true);
+    public static Node<Amplicon> test1() {
+        Node<Amplicon> root = new Node<Amplicon>(2, 3345, 33344, true);
+        Node<Amplicon> n11 = new Node<Amplicon>(7, 332, 4554, false);
+        Node<Amplicon> n12 = new Node<Amplicon>(5, 2202, 35566, true);
+        Node<Amplicon> n21 = new Node<Amplicon>(1, 566676, 1000044, true);
+        Node<Amplicon> n22 = new Node<Amplicon>(6, 444504, 3443234, false);
+        Node<Amplicon> n23 = new Node<Amplicon>(3, 11234, 55643, true);
+        Node<Amplicon> n24 = new Node<Amplicon>(11, 13203, 3003495, false);
+        Node<Amplicon> n31 = new Node<Amplicon>(21, 3324, 9985, true);
+        Node<Amplicon> n32 = new Node<Amplicon>(8, 10349, 23343, false);
+        Node<Amplicon> n33 = new Node<Amplicon>(4, 22345, 66554, false);
+        Node<Amplicon> n34 = new Node<Amplicon>(5, 6964, 9884, true);
+        Node<Amplicon> n35 = new Node<Amplicon>(22, 99865, 100354, false);
+        Node<Amplicon> n36 = new Node<Amplicon>(15, 54989, 70452, false);
+        Node<Amplicon> n37 = new Node<Amplicon>(17, 44342, 56000, true);
+        Node<Amplicon> n38 = new Node<Amplicon>(20, 56697, 100024, true);
 
         root.left = n11;
         root.right = n12;
@@ -178,3 +176,4 @@ class BTreePrinter {
         return true;
     }
 }
+
