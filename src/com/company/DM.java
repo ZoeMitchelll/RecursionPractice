@@ -47,7 +47,6 @@ public class DM {
         return buffer.toString();
     }
 
-    // prints tree to the screen
     private void print(String prefix, String childrenPrefix) {
         buffer.append(prefix);
         buffer.append(getPrefix());
@@ -62,7 +61,6 @@ public class DM {
         }
     }
 
-    //adds double minutes to tree
     HashSet<DM> populateChildren(int childrenNum){
         HashSet<DM> treeLevel = new HashSet<>();
         while(treeLevel.size()!=childrenNum){
@@ -72,7 +70,6 @@ public class DM {
         return treeLevel;
     }
 
-    //alters each double minute through generations
     public void alterMinute(int randomGenerations){
         if(0 == randomGenerations){
             return;
@@ -87,7 +84,7 @@ public class DM {
         }
     }
 
-    public void setChildren(HashSet<DM> newChildren) {
+    private void setChildren(HashSet<DM> newChildren) {
         children = newChildren;
     }
 }
