@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Random;
 
-public class Amplicon {
+public class Amplicon implements Comparable<Object> {
 
     private int chromosome;
     private int start;
@@ -59,5 +59,10 @@ public class Amplicon {
 
     public int getEnd() {
         return end;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
